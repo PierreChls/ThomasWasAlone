@@ -52,7 +52,8 @@ void dessinCarre(int cote) {
   glEnd();
 }
 
-void move_texture(GLuint* texture, float** positionparallax){
+void move_texture(GLuint* texture, float** positionparallax, int brume){
+  if(brume == 0) {
   glEnable(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, (*texture) );
   glLoadIdentity();
@@ -71,18 +72,72 @@ void move_texture(GLuint* texture, float** positionparallax){
 
     glTexCoord2f(0, 0);
     glVertex2f(-60, 160);
+  glEnd(); 
+  }
+  if(brume == 1) {
+  glEnable(GL_TEXTURE_2D);
+  glBindTexture(GL_TEXTURE_2D, (*texture) );
+  glLoadIdentity();
+  glTranslatef(( (**positionparallax) * 2)-120, 0, 1);
+  glBegin(GL_QUADS);
+    glColor3f(1, 1, 1);
+
+    glTexCoord2f(0, 1);
+    glVertex2f(-60, -20);
+
+    glTexCoord2f(1, 1);
+    glVertex2f(400, -20);
+
+    glTexCoord2f(1, 0);
+    glVertex2f(400, -5);
+
+    glTexCoord2f(0, 0);
+    glVertex2f(-60, -5);
+  glEnd(); 
+  }
+
+
+}
+
+void move_texture_menuLvl(GLuint* texture, float x1, float x2, float y1, float y2){
+
+  glEnable(GL_TEXTURE_2D);
+  glBindTexture(GL_TEXTURE_2D, *texture);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glBegin(GL_QUADS);
+
+  glColor3f(1, 1, 1);
+  glTexCoord2f(0, 1);
+  glVertex2f(x1, y1);
+
+  glTexCoord2f(1, 1);
+  glVertex2f(x2, y1);
+
+  glTexCoord2f(1, 0);
+  glVertex2f(x2, y2);
+
+  glTexCoord2f(0, 0);
+  glVertex2f(x1, y2);
+
   glEnd();
+
+  glBindTexture(GL_TEXTURE_2D, 0);
+  glDisable(GL_TEXTURE_2D);
+}
+
+void selector() {
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
 }
 
 void move_texture_menu(GLuint* texture_menu, float* rotation1){
 
-  //glMatrixMode(GL_PROJECTION);
+  glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
   glEnable(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, *texture_menu);
-  glLoadIdentity();
-  glScalef(1,1,0.0);
   glBegin(GL_QUADS);
 
   glColor3f(1, 1, 1);

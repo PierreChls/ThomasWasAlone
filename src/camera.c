@@ -1,7 +1,6 @@
 #include "camera.h"
 
 void moveCameraSuivrePerso(Personnage* perso, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y){
-
   if(perso != NULL){
     glMatrixMode(GL_PROJECTION);
     (*distance_x) = perso->x_start - (*camera_center_x);

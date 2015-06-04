@@ -56,6 +56,7 @@ Personnagelist* InitialiserPersonnagelist ();
 void AddPersonnagelist (Personnagelist liste[], float hauteur, float largeur, float x_start, float y_start, float x_end, float y_end, float puissance_saut, int TouchDown, int TouchTop, int colorR, int colorG, int colorB);
 void supprimerPersonnagelist(Personnagelist* personnagelist);
 void dessinPersonnage (Personnagelist* Personnagelist);
+void dessinPersonnageOmbre(Personnagelist* Personnagelist);
 void dessinPersonnageSelect(Personnage* ActualPerso);
 void dessinPersonnageBarre(Personnagelist* Personnagelist, Personnage* PersoRepere, int windowWidth, int windowHeight, float* centreX, float* centerY);
 Personnage* changePersonnage (Personnagelist* personnagelist, Personnage* ActualPerso);

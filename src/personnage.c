@@ -64,6 +64,7 @@ void dessinPersonnage (Personnagelist* Personnagelist){
 		exit(1);
 	}
 	glLoadIdentity();
+	dessinPersonnageOmbre(Personnagelist);
 	Personnage* ActualPerso = Personnagelist->first;
 	while (ActualPerso != NULL) {
 	  	glBegin(GL_QUADS);
@@ -79,6 +80,24 @@ void dessinPersonnage (Personnagelist* Personnagelist){
 				glVertex2f((ActualPerso->x_end) + (ActualPerso->largeur)/2, (ActualPerso->y_end) + (ActualPerso->hauteur)/2);
 				glVertex2f((ActualPerso->x_end) + (ActualPerso->largeur)/2, (ActualPerso->y_end) - (ActualPerso->hauteur)/2);
 				glVertex2f((ActualPerso->x_end) - (ActualPerso->largeur)/2, (ActualPerso->y_end) - (ActualPerso->hauteur)/2);
+	  	glEnd();
+	  	ActualPerso = ActualPerso->next;
+	}
+}
+
+void dessinPersonnageOmbre(Personnagelist* Personnagelist){
+	if (Personnagelist == NULL) {
+		exit(1);
+	}
+	glLoadIdentity(); 
+	Personnage* ActualPerso = Personnagelist->first;
+	while (ActualPerso != NULL) {
+		glBegin(GL_QUADS);
+	  	  glColor4f(0, 0, 0, 0.25);
+				glVertex2f(((ActualPerso->x_start) - (ActualPerso->largeur_color)/2)-1, ((ActualPerso->y_start) + (ActualPerso->hauteur)/2)+1);
+				glVertex2f(((ActualPerso->x_start) + (ActualPerso->largeur_color)/2)-1, ((ActualPerso->y_start) + (ActualPerso->hauteur)/2)+1);
+				glVertex2f(((ActualPerso->x_start) + (ActualPerso->largeur_color)/2)-1, ((ActualPerso->y_start) - (ActualPerso->hauteur)/2)+1);
+				glVertex2f(((ActualPerso->x_start) - (ActualPerso->largeur_color)/2)-1, ((ActualPerso->y_start) - (ActualPerso->hauteur)/2)+1);
 	  	glEnd();
 	  	ActualPerso = ActualPerso->next;
 	}

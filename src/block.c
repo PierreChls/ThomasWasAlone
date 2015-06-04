@@ -47,9 +47,15 @@ void dessinBlock (int Filled, Blocklist* Blocklist){
 	}
 	Block* ActualBlock = Blocklist->first;
 	while (ActualBlock != NULL) {
-			glColor3ub(0, 0, 0);
-	  	if (Filled==1) glBegin(GL_QUADS);
-	  	else glBegin(GL_LINE_LOOP);
+		glColor4f(0, 0, 0, 0.25);
+	  	glBegin(GL_QUADS);
+	    	glVertex2f(((ActualBlock->x) - (ActualBlock->largeur)/2)-1, ((ActualBlock->y) + (ActualBlock->hauteur)/2)+1);
+	    	glVertex2f(((ActualBlock->x) + (ActualBlock->largeur)/2)-1, ((ActualBlock->y) + (ActualBlock->hauteur)/2)+1);
+	    	glVertex2f(((ActualBlock->x) + (ActualBlock->largeur)/2)-1, ((ActualBlock->y) - (ActualBlock->hauteur)/2)+1);
+	    	glVertex2f(((ActualBlock->x) - (ActualBlock->largeur)/2)-1, ((ActualBlock->y) - (ActualBlock->hauteur)/2)+1);
+	  	glEnd();
+		glColor3ub(0, 0, 0);
+	  	glBegin(GL_QUADS);
 	    	glVertex2f((ActualBlock->x) - (ActualBlock->largeur)/2, (ActualBlock->y) + (ActualBlock->hauteur)/2);
 	    	glVertex2f((ActualBlock->x) + (ActualBlock->largeur)/2, (ActualBlock->y) + (ActualBlock->hauteur)/2);
 	    	glVertex2f((ActualBlock->x) + (ActualBlock->largeur)/2, (ActualBlock->y) - (ActualBlock->hauteur)/2);

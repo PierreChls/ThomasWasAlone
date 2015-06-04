@@ -80,7 +80,10 @@ int main(int argc, char** argv) {
   GLuint texture_front = load_Texture("img/texture1.png");
   GLuint texture_back = load_Texture("img/texture2.png");
   GLuint texture_brume = load_Texture("img/brume.png");
-
+  GLuint texture_lvl1 = load_Texture("img/lvl1.png");
+  GLuint texture_lvl2 = load_Texture("img/lvl2.png");
+  GLuint texture_lvl3 = load_Texture("img/lvl3.png");
+  GLuint texture_gradient = load_Texture("img/texture_ombre.png");
 
   init_music();
   Mix_Music* music_game = load_music_MP3("music/game.mp3", 2);
@@ -95,6 +98,10 @@ int main(int argc, char** argv) {
 
     if(actif_menu == 1){
       move_texture_menu(&texture_menu, &rotation_menu);
+      //selector(cpt_select_menu);
+      //move_texture_menuLvl(&texture_lvl1, 0, 0.7, -0.2, -0.05);//texture, x1, x2, y1, y2
+      //move_texture_menuLvl(&texture_lvl2, 0, 0.7, -0.5, -0.35);//texture, x1, x2, y1, y2
+      //move_texture_menuLvl(&texture_lvl3, 0, 0.7, -0.8, -0.65);//texture, x1, x2, y1, y2
       rotation_menu += 0.1;
     }
     else{
@@ -106,7 +113,7 @@ int main(int argc, char** argv) {
         menu_load = 1;
       }
 
-      if(testwin==0 && evolution_niveau(blocklist, personnagelist, &perso, windowWidth, windowHeight, &booleanPressed, &booleanChangePersonnage, &reset, &jump, &verif, &verif2, &verif3, &pesanteur, &acceleration, &positionparallax, &movetop, &verifTop, &parallax_move, &son_bottom, &verifsound3, &distance_x, &distance_y, &camera_center_x, &camera_center_y, son_win, son_ground, son_jump, texture_front, texture_back, &positionparallaxfixed, &cpt_finish_level, &son_top, texture_brume, &rotateCarre)){
+      if(testwin==0 && evolution_niveau(blocklist, personnagelist, &perso, windowWidth, windowHeight, &booleanPressed, &booleanChangePersonnage, &reset, &jump, &verif, &verif2, &verif3, &pesanteur, &acceleration, &positionparallax, &movetop, &verifTop, &parallax_move, &son_bottom, &verifsound3, &distance_x, &distance_y, &camera_center_x, &camera_center_y, son_win, son_ground, son_jump, texture_front, texture_back, &positionparallaxfixed, &cpt_finish_level, &son_top, texture_brume, texture_gradient, &rotateCarre)){
         testwin=1;
       }
 
@@ -116,7 +123,7 @@ int main(int argc, char** argv) {
         supprimerBlocklist(blocklist);
         personnagelist = InitialiserPersonnagelist();
         blocklist = InitialiserBlocklist();
-        loadNiveau(2, personnagelist, blocklist);
+        loadNiveau(cpt_select_menu, personnagelist, blocklist);
         perso = personnagelist->first;
         testwin=0;
       }
@@ -159,17 +166,18 @@ int main(int argc, char** argv) {
 
         case SDL_KEYDOWN:
           switch(e.key.keysym.sym){
-            case SDLK_ESCAPE :
-              if(actif_menu==0){
-                actif_menu = 1;
+
+            case SDLK_RETURN :
+              if(actif_menu == 1) {
+                actif_menu = 0;
                 reshapeResize(perso, windowWidth, windowHeight);
               }
             break;
-            case SDLK_RETURN :
-                if(actif_menu==1){
-                  actif_menu = 0;
-                  reshapeResize(perso, windowWidth, windowHeight);
-                }
+
+             case SDLK_ESCAPE :
+              if(actif_menu == 0){
+                actif_menu = 1;
+              }
             break;
 
             case SDLK_RIGHT :

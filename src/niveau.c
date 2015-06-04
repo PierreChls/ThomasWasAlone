@@ -48,7 +48,7 @@ void loadNiveau(int number_level, Personnagelist* personnagelist, Blocklist* blo
 
 }
 
-int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume, float* rotateCarre) {
+int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume,  GLuint texture_gradient, float* rotateCarre) {
   int t;
   moveCameraSuivrePerso(*perso, distance_x, distance_y, camera_center_x, camera_center_y);
   //mouvementCamera(*perso, windowWidth, windowHeight, camera_center_x,camera_center_y);
@@ -58,9 +58,8 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
   glClearColor(0.098, 0.25, 0.30, 1.0);
   //Changement de matrice
   glMatrixMode(GL_MODELVIEW);
-
-  move_texture(&texture_front, &positionparallax);
-  //move_texture(&texture_brume, &positionparallax);
+  move_texture(&texture_front, &positionparallax, 0);
+  move_texture(&texture_brume, &positionparallax, 1);
   //move_texture(&texture_back, &positionparallaxfixed);
 
 
@@ -156,7 +155,7 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
 
       if((*perso)->largeur_color > 0.11 && (*verif2) == 0) {
         if((*verif3) == 0) {
-          (*perso)->largeur_color -= 0.04;
+          (*perso)->largeur_color -= 0.05;
           if((*perso)->largeur_color <= 1.05) {
             (*verif2) = 1;
             (*verif3) = 1;
@@ -164,7 +163,7 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
         }
       }
       if((*verif2) == 1) {
-        (*perso)->largeur_color += 0.04;
+        (*perso)->largeur_color += 0.05;
           if((*perso)->largeur_color >= (*perso)->largeur) {
             (*verif2) = 0;
           }
@@ -230,6 +229,7 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
       (*son_bottom) = 1;
     }
     (*verif3) = 0;
+    (*perso)->largeur_color = (*perso)->largeur;
   }
 
   //Si collisionBottom == NULL et qu'il ne saute pas, on applique la pesanteur
