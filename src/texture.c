@@ -76,7 +76,7 @@ void move_texture(GLuint* texture, float** positionparallax){
 
 void move_texture_menu(GLuint* texture_menu, float* rotation1){
 
-  glMatrixMode(GL_PROJECTION);
+  //glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
   glEnable(GL_TEXTURE_2D);

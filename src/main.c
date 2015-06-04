@@ -102,7 +102,6 @@ int main(int argc, char** argv) {
         personnagelist = InitialiserPersonnagelist();
         blocklist = InitialiserBlocklist();
         loadNiveau(cpt_select_menu, personnagelist, blocklist);
-        //load_niveau(personnagelist, blocklist, cpt_select_menu);
         perso = personnagelist->first;
         menu_load = 1;
       }
@@ -160,12 +159,16 @@ int main(int argc, char** argv) {
 
         case SDL_KEYDOWN:
           switch(e.key.keysym.sym){
-
+            case SDLK_ESCAPE :
+              if(actif_menu==0){
+                actif_menu = 1;
+                reshapeResize(perso, windowWidth, windowHeight);
+              }
+            break;
             case SDLK_RETURN :
                 if(actif_menu==1){
                   actif_menu = 0;
-                  glRotatef(-0.95, 0, 0, 1);
-                  reshape(windowWidth, windowHeight);
+                  reshapeResize(perso, windowWidth, windowHeight);
                 }
             break;
 
@@ -203,7 +206,6 @@ int main(int argc, char** argv) {
                 reset = 1;
             break;
             case 'q' :
-            case SDLK_ESCAPE :
               loop = 0;
             break;
             case 'c' :
