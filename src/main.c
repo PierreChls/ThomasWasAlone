@@ -63,9 +63,9 @@ int main(int argc, char** argv) {
   float camera_center_x = 0, camera_center_y = 0;
   int testwin = 0;
   int cpt_finish_level = 0;
-
-  int actif_menu = 1;
   float rotation_menu = 0;
+  float rotateCarre = 0;
+  int actif_menu = 1;
   int cpt_select_menu = 1;
   int menu_load = 0;
 
@@ -76,9 +76,10 @@ int main(int argc, char** argv) {
   Blocklist* blocklist;
   Personnage* perso;
 
-  GLuint texture_menu = load_Texture("img/menu.jpg");
+  GLuint texture_menu = load_Texture("img/menu2.jpg");
   GLuint texture_front = load_Texture("img/texture1.png");
   GLuint texture_back = load_Texture("img/texture2.png");
+  GLuint texture_brume = load_Texture("img/brume.png");
 
 
   init_music();
@@ -100,13 +101,13 @@ int main(int argc, char** argv) {
       if(menu_load == 0){
         personnagelist = InitialiserPersonnagelist();
         blocklist = InitialiserBlocklist();
-        initializeFromFile(1, personnagelist, blocklist);
-        load_niveau(personnagelist, blocklist, cpt_select_menu);
+        loadNiveau(cpt_select_menu, personnagelist, blocklist);
+        //load_niveau(personnagelist, blocklist, cpt_select_menu);
         perso = personnagelist->first;
         menu_load = 1;
       }
 
-      if(testwin==0 && evolution_niveau(blocklist, personnagelist, &perso, windowWidth, windowHeight, &booleanPressed, &booleanChangePersonnage, &reset, &jump, &verif, &verif2, &verif3, &pesanteur, &acceleration, &positionparallax, &movetop, &verifTop, &parallax_move, &son_bottom, &verifsound3, &distance_x, &distance_y, &camera_center_x, &camera_center_y, son_win, son_ground, son_jump, texture_front, texture_back, &positionparallaxfixed, &cpt_finish_level, &son_top)==1){
+      if(testwin==0 && evolution_niveau(blocklist, personnagelist, &perso, windowWidth, windowHeight, &booleanPressed, &booleanChangePersonnage, &reset, &jump, &verif, &verif2, &verif3, &pesanteur, &acceleration, &positionparallax, &movetop, &verifTop, &parallax_move, &son_bottom, &verifsound3, &distance_x, &distance_y, &camera_center_x, &camera_center_y, son_win, son_ground, son_jump, texture_front, texture_back, &positionparallaxfixed, &cpt_finish_level, &son_top, texture_brume, &rotateCarre)){
         testwin=1;
       }
 
@@ -116,7 +117,7 @@ int main(int argc, char** argv) {
         supprimerBlocklist(blocklist);
         personnagelist = InitialiserPersonnagelist();
         blocklist = InitialiserBlocklist();
-        load_niveau(personnagelist, blocklist, 2);
+        loadNiveau(2, personnagelist, blocklist);
         perso = personnagelist->first;
         testwin=0;
       }
@@ -161,9 +162,11 @@ int main(int argc, char** argv) {
           switch(e.key.keysym.sym){
 
             case SDLK_RETURN :
-                actif_menu = 0;
-                glRotatef(-0.95, 0, 0, 1);
-                reshape(windowWidth, windowHeight);
+                if(actif_menu==1){
+                  actif_menu = 0;
+                  glRotatef(-0.95, 0, 0, 1);
+                  reshape(windowWidth, windowHeight);
+                }
             break;
 
             case SDLK_RIGHT :
@@ -230,7 +233,7 @@ int main(int argc, char** argv) {
   Mix_FreeChunk(son_jump);
   Mix_FreeChunk(son_ground);
   Mix_FreeChunk(son_win);
-  Mix_CloseAudio(); //Fermeture de l'API
+  Mix_CloseAudio();
   SDL_Quit();
 
   return EXIT_SUCCESS;

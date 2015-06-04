@@ -1,6 +1,6 @@
 #include "niveau.h"
 
-void initializeFromFile(int number_level, Personnagelist* personnagelist, Blocklist* blocklist){
+void loadNiveau(int number_level, Personnagelist* personnagelist, Blocklist* blocklist){
 
 	FILE *file = NULL;
 
@@ -23,28 +23,23 @@ void initializeFromFile(int number_level, Personnagelist* personnagelist, Blockl
   float hauteur_block, largeur_block, x, y;
   int move;
 
-  if(fscanf(file, "nbPerso = %d nbBlock = %d", &nbPerso, &nbBlock)==2){
-		printf("%d %d\n", nbPerso, nbBlock);
-	}
-	else{
+  if(fscanf(file, "nbPerso = %d nbBlock = %d", &nbPerso, &nbBlock)!=2) {
     printf("Failed to assign the right inputs.\n");
     exit(1);
   }
 
   for (i = 0; i < nbPerso; ++i)
   {
-  	if(fscanf(file, "%f %f %f %f %f %f %f %d %d %d %d %d", &hauteur, &largeur, &x_start, &y_start, &x_end, &y_end, &puissance_saut, &TouchDown, &TouchTop, &colorR, &colorG, &colorB)==12){
-		    printf("%f %f %f %f %f %f %f %d %d %d %d %d\n", hauteur, largeur, x_start, y_start, x_end, y_end, puissance_saut, TouchDown, TouchTop, colorR, colorG, colorB);
-        //(*platforms)[i] = createPlatform(w, h, x, y, shadow, type);
+  	if(fscanf(file, "%f, %f, %f, %f, %f, %f, %f, %d, %d, %d, %d, %d", &hauteur, &largeur, &x_start, &y_start, &x_end, &y_end, &puissance_saut, &TouchDown, &TouchTop, &colorR, &colorG, &colorB)==12){
+		    AddPersonnagelist(personnagelist, hauteur, largeur, x_start, y_start, x_end, y_end, puissance_saut, TouchDown, TouchTop, colorR, colorG, colorB);
 	  }
 	  else printf("Failed to assign the right inputs.\n");
   }
 
   for (i = nbPerso; i < (nbPerso + nbBlock); ++i)
   {
-  	if(fscanf(file, "%f %f %f %f %d", &hauteur_block, &largeur_block, &x, &y, &move)==5){
-		    printf("%f %f %f %f %d\n", hauteur_block, largeur_block, x, y, move);
-        //(*platforms)[i] = createPlatform(w, h, x, y, shadow, type);
+  	if(fscanf(file, "%f, %f, %f, %f, %d", &hauteur_block, &largeur_block, &x, &y, &move)==5){
+		    AddBlocklist(blocklist, hauteur_block, largeur_block, x, y, move);
 	  }
 	  else printf("Failed to assign the right inputs.\n");
   }
@@ -53,65 +48,52 @@ void initializeFromFile(int number_level, Personnagelist* personnagelist, Blockl
 
 }
 
-void load_niveau(Personnagelist* personnagelist, Blocklist* blocklist, int number_level){
-
-  if(number_level == 1){
-    AddPersonnagelist(personnagelist, 6, 1.3, -150, -9.5, -140, -9.5, 1.1, 1, 0, 173, 155, 55); //hauteur, largeur, x_start, y_start, x_end, y_end, puissance_saut, Touchdown, TouchTop, R, G, B
-    AddPersonnagelist(personnagelist, 1.8, 1.8, -145, -11.6, -135, -11.6, 0.8, 1, 0, 208, 108, 53);
-    AddPersonnagelist(personnagelist, 3, 1.7, -140, 0, -150, -11, 1, 1, 0, 166, 55, 59);
-
-    AddBlocklist(blocklist, 20, 300, -40, -22.5, 0); //hauteur, largeur, x, y
-    AddBlocklist(blocklist, 10, 7, -115, -11, 0);
-    AddBlocklist(blocklist, 20, 10, -80, -11, 0);
-    AddBlocklist(blocklist, 70, 50, 20, 20, 0);
-    AddBlocklist(blocklist, 90, 20, -30, 50, 0);
-    AddBlocklist(blocklist, 3, 8, -8, -5, 1); //Block vertical1
-    AddBlocklist(blocklist, 3, 8, -5, 53.5, 0);
-    AddBlocklist(blocklist, 3, 8, -17, 53.5, 2);//Block vertical2
-    AddBlocklist(blocklist, 50, 80, 0, 110, 0);
-    AddBlocklist(blocklist, 90, 80, 150, 10, 0);
-    AddBlocklist(blocklist, 40, 80, 80, 0, 0);
-    AddBlocklist(blocklist, 2, 6, 50, 54, 3); //Block horizontal1
-    AddBlocklist(blocklist, 2, 6, 105, 54, 4); //Block horizontal2
-    AddBlocklist(blocklist, 9, 10, 120, 62, 0);
-    AddBlocklist(blocklist, 10, 6, 122, 71, 0);
-    AddBlocklist(blocklist, 30, 10, 50, 30, 0);
-    AddBlocklist(blocklist, 30, 10, 60, 20, 0);
-    AddBlocklist(blocklist, 30, 10, 70, 10, 0);
-  }
-
-
-  if(number_level == 2){
-    AddPersonnagelist(personnagelist, 6, 1.3, -150, -9.5, -140, -9.5, 1.1, 1, 0, 173, 155, 55);
-
-    AddBlocklist(blocklist, 20, 300, -40, -22.5, 0); //hauteur, largeur, x, y
-    AddBlocklist(blocklist, 10, 7, -115, -11, 0);
-  }
-}
-
-int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top){
-
+int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume, float* rotateCarre) {
+  int t;
   moveCameraSuivrePerso(*perso, distance_x, distance_y, camera_center_x, camera_center_y);
   //mouvementCamera(*perso, windowWidth, windowHeight, camera_center_x,camera_center_y);
 
   glClear(GL_COLOR_BUFFER_BIT);
 
-  glClearColor(0.15, 0.18, 0.18, 1.0);
+  glClearColor(0.098, 0.25, 0.30, 1.0);
   //Changement de matrice
   glMatrixMode(GL_MODELVIEW);
 
   move_texture(&texture_front, &positionparallax);
-  move_texture(&texture_back, &positionparallaxfixed);
+  //move_texture(&texture_brume, &positionparallax);
+  //move_texture(&texture_back, &positionparallaxfixed);
 
 
   glBindTexture(GL_TEXTURE_2D, 0);
   glDisable(GL_TEXTURE_2D);
+
+  for(t=0; t<1000; t+=100) {
+    glLoadIdentity();
+    glTranslatef(t-150, 5, 1);
+    glRotatef(*rotateCarre, 0, 0, 1);
+    dessinCarre(10);
+  }
+
+  for(t=0; t<1000; t+=120) {
+    glLoadIdentity();
+    glTranslatef(t-110, -10, 1);
+    glRotatef(*rotateCarre, 0, 0, 1);
+    dessinCarre(20);
+  }
+
+  for(t=0; t<1000; t+=150) {
+    glLoadIdentity();
+    glTranslatef(t-130, 15, 1);
+    glRotatef(-(*rotateCarre), 0, 0, 1);
+    dessinCarre(15);
+  }
 
   /* Affichage */
   dessinBlock(1, blocklist);
   dessinPersonnage(personnagelist);
   dessinPersonnageBarre(personnagelist, *perso, windowWidth, windowHeight, camera_center_x, camera_center_y);
 
+  *rotateCarre += 0.01;
 
   if (TargetAll(personnagelist) == 0) {
     dessinPersonnageSelect(*perso);
@@ -194,8 +176,7 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
     (*son_top) = 0;
   }
 
-  /*Fin Saut*/
-
+  deffilement(positionparallax);
 
   if( (*jump)==0 && (*pesanteur)!=0 && collisionBottomWithoutJump(*perso, blocklist)!=NULL ){
     (*pesanteur) = 0;
@@ -203,7 +184,7 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
   }
 
   if( (*acceleration) != 0 && collisionPersonnageTop(*perso, personnagelist) == NULL  && (*parallax_move) == 0) {
-    parallax(*booleanPressed, positionparallax);
+    //parallax(*booleanPressed, positionparallax);
   }
 
 

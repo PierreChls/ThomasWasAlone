@@ -26,7 +26,7 @@
 #include <math.h>
 
 void moveCameraSuivrePerso(Personnage* perso, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y);
-void mouvementCamera(Personnage* perso, int windowWidth, int windowHeight, float* centreX, float* centreY);
 void parallax(int booleanPressed, float* positionparallax);
+void deffilement(float* positionparallax);
 
 #endif

@@ -25,6 +25,6 @@
 #include <math.h>
 #include <SDL/SDL_image.h>
 
-void dessinCarre();
+void dessinCarre2();
 
 #endif

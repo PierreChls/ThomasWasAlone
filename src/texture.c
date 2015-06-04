@@ -42,6 +42,16 @@ GLuint load_Texture(char* path){
   return textureId;
 }
 
+void dessinCarre(int cote) {
+  glColor4f(1, 1, 1, 0.03);
+  glBegin(GL_QUADS);
+    glVertex2f(-cote, cote);
+    glVertex2f(-cote, -cote);
+    glVertex2f(cote, -cote);
+    glVertex2f(cote, cote);
+  glEnd();
+}
+
 void move_texture(GLuint* texture, float** positionparallax){
   glEnable(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, (*texture) );
@@ -102,61 +112,61 @@ void move_texture_menu(GLuint* texture_menu, float* rotation1){
   glTranslatef(-10, -5, 1);
   glColor4f(1, 0, 0, 0.7);
   glRotatef((*rotation1)/2, 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-7, -4.5, 1);
   glColor4f(1, 0, 0, 0.7);
   glRotatef(-(*rotation1), 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-8, -5.5, 1);
   glColor4f(0.1, 0.5, 0, 0.7);
   glRotatef((*rotation1), 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-8.5, -3.5, 1);
   glColor4f(1, 1, 0, 0.7);
   glRotatef(-(*rotation1)/2, 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-8, -4, 1);
   glColor4f(0, 0.3, 0.6, 0.7);
   glRotatef(-(*rotation1)/3, 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.08,0.14,0.0);
   glTranslatef(-7, -4, 1);
   glColor4f(0, 0.3, 0.6, 0.7);
   glRotatef(-(*rotation1)/3, 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.07,0.13,0.0);
   glTranslatef(-9.5, -3.5, 1);
   glColor4f(0.1, 0.5, 0, 0.7);
   glRotatef((*rotation1)/4, 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.06,0.12,0.0);
   glTranslatef(-9.5, -2.5, 1);
   glColor4f(1, 1, 0, 0.7);
   glRotatef(-(*rotation1)/4, 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.05,0.08,0.0);
   glTranslatef(-10, -2.5, 1);
   glColor4f(1, 0, 0, 0.7);
   glRotatef((*rotation1)/5, 0, 0, 1);
-  dessinCarre();
+  dessinCarre2();
 }
