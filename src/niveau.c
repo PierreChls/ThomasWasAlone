@@ -48,7 +48,7 @@ void loadNiveau(int number_level, Personnagelist* personnagelist, Blocklist* blo
 
 }
 
-int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume,  GLuint texture_gradient, float* rotateCarre) {
+int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume, float* rotateCarre) {
   int t;
   moveCameraSuivrePerso(*perso, distance_x, distance_y, camera_center_x, camera_center_y);
   //mouvementCamera(*perso, windowWidth, windowHeight, camera_center_x,camera_center_y);
@@ -193,7 +193,17 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
   Block* BlockCollisionBottom;
   BlockCollisionBottom = collisionBottom(*perso, blocklist);
 
-  if(BlockCollisionTop != NULL){
+	int verifcollisionTopBlockMove = 0;
+
+	if(BlockCollisionTop != NULL){
+		if(BlockCollisionTop->move == 1 || BlockCollisionTop->move ==2){
+			(*perso)->y_start -= 0.8;
+			(*jump) = 1;
+			verifcollisionTopBlockMove = 1;
+		}
+	}
+
+  if(BlockCollisionTop != NULL && verifcollisionTopBlockMove == 0){
     controlCollisionTop(*perso, BlockCollisionTop);
     (*pesanteur) = 0;
     (*jump) = 0;

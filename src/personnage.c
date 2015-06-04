@@ -89,7 +89,7 @@ void dessinPersonnageOmbre(Personnagelist* Personnagelist){
 	if (Personnagelist == NULL) {
 		exit(1);
 	}
-	glLoadIdentity(); 
+	glLoadIdentity();
 	Personnage* ActualPerso = Personnagelist->first;
 	while (ActualPerso != NULL) {
 		glBegin(GL_QUADS);
@@ -122,29 +122,29 @@ void dessinPersonnageBarre(Personnagelist* Personnagelist, Personnage* PersoRepe
 	}
 	int decallage = 0;
 	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	//glTranslatef(-(windowWidth/2 +20 ), -(windowHeight/2 +20), 0);
+	glMatrixMode(GL_PROJECTION);
 	Personnage* ActualPerso = Personnagelist->first;
 	while (ActualPerso != NULL) {
 	  	glBegin(GL_QUADS);
 			//glTranslatef(windowWidth/2 - 100, windowHeight/2 - 100, 1);
 				glColor3ub(ActualPerso->colorR, ActualPerso->colorG, ActualPerso->colorB);
-				glVertex2f(*centreX + 25 - decallage - 0.5, *centreY - 12 + 0.5);
-				glVertex2f(*centreX + 25 - decallage + 0.5, *centreY - 12 + 0.5);
-				glVertex2f(*centreX + 25 - decallage + 0.5, *centreY - 12 - 0.5);
-				glVertex2f(*centreX + 25 - decallage - 0.5, *centreY - 12 - 0.5);
+				glVertex2f(*centreX + 27 - decallage - 0.5, *centreY - 12 + 0.5);
+				glVertex2f(*centreX + 27 - decallage + 0.5, *centreY - 12 + 0.5);
+				glVertex2f(*centreX + 27 - decallage + 0.5, *centreY - 12 - 0.5);
+				glVertex2f(*centreX + 27 - decallage - 0.5, *centreY - 12 - 0.5);
 	  	glEnd();
 			if(ActualPerso == PersoRepere){
 				glBegin(GL_TRIANGLES);
 					glColor3ub(255, 255, 255);
-					glVertex2f(PersoRepere->x_start + (windowWidth/47) - decallage - 0.3, PersoRepere->y_start - (windowHeight/64) + 0.5 + 1);
-					glVertex2f(PersoRepere->x_start + (windowWidth/47) - decallage + 0.3, PersoRepere->y_start - (windowHeight/64) + 0.5 + 1);
-					glVertex2f(PersoRepere->x_start + (windowWidth/47) - decallage, PersoRepere->y_start - (windowHeight/64) + 0.5 + 0.5);
+					glVertex2f(*centreX + 27 - decallage - 0.3, *centreY - 12 + 0.5 + 1);
+					glVertex2f(*centreX + 27 - decallage + 0.3, *centreY - 12 + 0.5 + 1);
+					glVertex2f(*centreX + 27 - decallage, *centreY - 12 + 0.5 + 0.5);
 				glEnd();
 			}
 			decallage += 1;
 	  	ActualPerso = ActualPerso->next;
 	}
+	glMatrixMode(GL_MODELVIEW);
 	//glTranslatef((windowWidth/2 +20), (windowHeight/2+20), 0);
 }
 
