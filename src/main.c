@@ -40,8 +40,8 @@ int main(int argc, char** argv) {
     return EXIT_FAILURE;
   }
 
-  unsigned int windowWidth  = 1000;
-  unsigned int windowHeight = 500;
+  unsigned int windowWidth  = 1200;
+  unsigned int windowHeight = 700;
   int booleanPressed = 0;
   int booleanChangePersonnage = 0;
   int reset = 0;

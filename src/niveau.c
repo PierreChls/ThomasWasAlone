@@ -60,6 +60,7 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
   glMatrixMode(GL_MODELVIEW);
   move_texture(&texture_front, &positionparallax, 0);
   move_texture(&texture_brume, &positionparallax, 1);
+	move_texture(&texture_brume, &positionparallax, 1);
   //move_texture(&texture_back, &positionparallaxfixed);
 
 
@@ -199,7 +200,7 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
   deffilement(positionparallax);
 
   if( (*jump)==0 && (*pesanteur)!=0 && collisionBottomWithoutJump(*perso, blocklist)!=NULL ){
-		(*pesanteur) = 0;
+    (*pesanteur) = 0;
     (*jump) = 0;
   }
 

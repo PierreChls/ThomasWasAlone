@@ -72,7 +72,7 @@ void move_texture(GLuint* texture, float** positionparallax, int brume){
 
     glTexCoord2f(0, 0);
     glVertex2f(-60, 160);
-  glEnd(); 
+  glEnd();
   }
   if(brume == 1) {
   glEnable(GL_TEXTURE_2D);
@@ -93,7 +93,7 @@ void move_texture(GLuint* texture, float** positionparallax, int brume){
 
     glTexCoord2f(0, 0);
     glVertex2f(-60, -5);
-  glEnd(); 
+  glEnd();
   }
 
 
