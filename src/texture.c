@@ -99,8 +99,33 @@ void move_texture(GLuint* texture, float** positionparallax, int brume){
 
 }
 
-void move_texture_menuLvl(GLuint* texture, float x1, float x2, float y1, float y2){
+void move_texture_win(GLuint* texture) {
+  glEnable(GL_TEXTURE_2D);
+  glBindTexture(GL_TEXTURE_2D, *texture);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glBegin(GL_QUADS);
 
+  glColor3f(1, 1, 1);
+  glTexCoord2f(0, 1);
+  glVertex2f(-0.75, -0.75);
+
+  glTexCoord2f(1, 1);
+  glVertex2f(0.75, -0.75);
+
+  glTexCoord2f(1, 0);
+  glVertex2f(0.75, 0.75);
+
+  glTexCoord2f(0, 0);
+  glVertex2f(-0.75, 0.75);
+
+  glEnd();
+
+  glBindTexture(GL_TEXTURE_2D, 0);
+  glDisable(GL_TEXTURE_2D);
+}
+
+void move_texture_menuLvl(GLuint* texture, float x1, float x2, float y1, float y2){
   glEnable(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, *texture);
   glMatrixMode(GL_PROJECTION);
@@ -126,9 +151,23 @@ void move_texture_menuLvl(GLuint* texture, float x1, float x2, float y1, float y
   glDisable(GL_TEXTURE_2D);
 }
 
-void selector() {
+void selector(float x1, float x2, float y1, float y2, int cpt_select_menu) {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
+  if(cpt_select_menu == 2) {
+    glTranslatef(0, -0.3, 0);
+  }
+  if(cpt_select_menu == 3) {
+    glTranslatef(0, -0.6, 0);
+  }
+  glBegin(GL_QUADS);
+    glColor4f(0.098, 0.25, 0.30, 0.2);
+
+  glVertex2f(x1, y1);
+  glVertex2f(x2, y1);
+  glVertex2f(x2, y2);
+  glVertex2f(x1, y2);
+  glEnd();
 }
 
 void move_texture_menu(GLuint* texture_menu, float* rotation1){
@@ -165,63 +204,63 @@ void move_texture_menu(GLuint* texture_menu, float* rotation1){
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-10, -5, 1);
-  glColor4f(1, 0, 0, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef((*rotation1)/2, 0, 0, 1);
   dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-7, -4.5, 1);
-  glColor4f(1, 0, 0, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef(-(*rotation1), 0, 0, 1);
   dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-8, -5.5, 1);
-  glColor4f(0.1, 0.5, 0, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef((*rotation1), 0, 0, 1);
   dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-8.5, -3.5, 1);
-  glColor4f(1, 1, 0, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef(-(*rotation1)/2, 0, 0, 1);
   dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.1,0.16,0.0);
   glTranslatef(-8, -4, 1);
-  glColor4f(0, 0.3, 0.6, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef(-(*rotation1)/3, 0, 0, 1);
   dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.08,0.14,0.0);
   glTranslatef(-7, -4, 1);
-  glColor4f(0, 0.3, 0.6, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef(-(*rotation1)/3, 0, 0, 1);
   dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.07,0.13,0.0);
   glTranslatef(-9.5, -3.5, 1);
-  glColor4f(0.1, 0.5, 0, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef((*rotation1)/4, 0, 0, 1);
   dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.06,0.12,0.0);
   glTranslatef(-9.5, -2.5, 1);
-  glColor4f(1, 1, 0, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef(-(*rotation1)/4, 0, 0, 1);
   dessinCarre2();
 
   glLoadIdentity();
   glScalef(0.05,0.08,0.0);
   glTranslatef(-10, -2.5, 1);
-  glColor4f(1, 0, 0, 0.7);
+  glColor4f(0.098, 0.25, 0.30, 0.6);
   glRotatef((*rotation1)/5, 0, 0, 1);
   dessinCarre2();
 }

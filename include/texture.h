@@ -31,6 +31,7 @@ void move_texture(GLuint* texture, float** positionparallax, int brume);
 void move_texture_menu(GLuint* texture_menu, float* rotation1);
 void dessinCarre(int cote);
 void move_texture_menuLvl(GLuint* texture, float x1, float x2, float y1, float y2);
-void selector();
+void selector(float x1, float x2, float y1, float y2, int cpt_select_menu);
+void move_texture_win(GLuint* texture);
 
 #endif

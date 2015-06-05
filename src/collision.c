@@ -2,7 +2,7 @@
 
 Block* collisionRight (Personnage* perso, Blocklist* Blocklist) {
   Block* ActualBlock = Blocklist->first;
-	while (ActualBlock != NULL) {
+  while (ActualBlock != NULL) {
       //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
       if (((perso->x_start) + (perso->largeur)/2 >= (ActualBlock->x) - ((ActualBlock->largeur)/2)-0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualBlock->x) + (ActualBlock->largeur)/2)) {
         //Si le point y le plus bas du perso est < au point y le plus haut du block
@@ -16,18 +16,18 @@ Block* collisionRight (Personnage* perso, Blocklist* Blocklist) {
       else {
         ActualBlock = ActualBlock->next;
       }
-	}
+  }
   return NULL;
 }
 
 Block* collisionBlockRight (Personnage* perso, Blocklist* Blocklist) {
   Block* ActualBlock = Blocklist->first;
-	while (ActualBlock != NULL) {
+  while (ActualBlock != NULL) {
     //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
     if (((perso->x_start) + (perso->largeur)/2 + 0.25 >= (ActualBlock->x) - ((ActualBlock->largeur)/2)) && ((perso->x_start) - (perso->largeur)/2 <= (ActualBlock->x) + (ActualBlock->largeur)/2)) {
       //Si le point y le plus bas du perso est < au point y le plus haut du block
       if (((perso->y_start) - (perso->hauteur)/2 < (ActualBlock->y) + (ActualBlock->hauteur)/2 - 0.25) && ((perso->y_start) + (perso->hauteur)/2 > (ActualBlock->y) - (ActualBlock->hauteur)/2)){
-				return ActualBlock;
+        return ActualBlock;
       }
       else {
         ActualBlock = ActualBlock->next;
@@ -36,13 +36,13 @@ Block* collisionBlockRight (Personnage* perso, Blocklist* Blocklist) {
     else {
       ActualBlock = ActualBlock->next;
     }
-	}
+  }
   return NULL;
 }
 
 Block* collisionLeft (Personnage* perso, Blocklist* Blocklist) {
   Block* ActualBlock = Blocklist->first;
-	while (ActualBlock != NULL) {
+  while (ActualBlock != NULL) {
     //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
     if (((perso->x_start) - (perso->largeur)/2 <= (ActualBlock->x) + ((ActualBlock->largeur)/2)+0.05) && ((perso->x_start) + (perso->largeur)/2 >= (ActualBlock->x) - (ActualBlock->largeur)/2)) {
       //Si le point y le plus bas du perso est < au point y le plus haut du block
@@ -62,49 +62,49 @@ Block* collisionLeft (Personnage* perso, Blocklist* Blocklist) {
 
 Block* collisionBlockLeft (Personnage* perso, Blocklist* Blocklist) {
   Block* ActualBlock = Blocklist->first;
-	while (ActualBlock != NULL) {
-	  //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	  if (((perso->x_start) - (perso->largeur)/2 - 0.5 <= (ActualBlock->x) + ((ActualBlock->largeur)/2)) && ((perso->x_start) + (perso->largeur)/2 >= (ActualBlock->x) - (ActualBlock->largeur)/2)) {
-	    //Si le point y le plus bas du perso est < au point y le plus haut du block
-	      if (((perso->y_start) - (perso->hauteur)/2 < (ActualBlock->y) + (ActualBlock->hauteur)/2 - 0.25) && ((perso->y_start) + (perso->hauteur)/2 > (ActualBlock->y) - (ActualBlock->hauteur)/2)){
-					return ActualBlock;
-	    	}
-	    	else {
+  while (ActualBlock != NULL) {
+    //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+    if (((perso->x_start) - (perso->largeur)/2 - 0.5 <= (ActualBlock->x) + ((ActualBlock->largeur)/2)) && ((perso->x_start) + (perso->largeur)/2 >= (ActualBlock->x) - (ActualBlock->largeur)/2)) {
+      //Si le point y le plus bas du perso est < au point y le plus haut du block
+        if (((perso->y_start) - (perso->hauteur)/2 < (ActualBlock->y) + (ActualBlock->hauteur)/2 - 0.25) && ((perso->y_start) + (perso->hauteur)/2 > (ActualBlock->y) - (ActualBlock->hauteur)/2)){
+          return ActualBlock;
+        }
+        else {
           ActualBlock = ActualBlock->next;
-	    	}
-	  }
-	  else {
+        }
+    }
+    else {
       ActualBlock = ActualBlock->next;
-	  }
-	}
+    }
+  }
   return NULL;
 }
 
 Block* collisionBottomWithoutJump (Personnage* perso, Blocklist* Blocklist) {
   Block* ActualBlock = Blocklist->first;
   while (ActualBlock != NULL) {
-		if (((perso->y_start) - (perso->hauteur)/2 - 0.5 <= (ActualBlock->y) + (ActualBlock->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualBlock->y) - (ActualBlock->hauteur)/2)) {
-	     //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	     if (((perso->x_start) + (perso->largeur)/2 >= (ActualBlock->x) - (ActualBlock->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualBlock->x) + (ActualBlock->largeur)/2 - 0.05)) {
-				     if(ActualBlock->move==2 || ActualBlock->move==1){
+    if (((perso->y_start) - (perso->hauteur)/2 - 0.5 <= (ActualBlock->y) + (ActualBlock->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualBlock->y) - (ActualBlock->hauteur)/2)) {
+       //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+       if (((perso->x_start) + (perso->largeur)/2 >= (ActualBlock->x) - (ActualBlock->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualBlock->x) + (ActualBlock->largeur)/2 - 0.05)) {
+             if(ActualBlock->move==2 || ActualBlock->move==1){
                perso->y_start -= 0.5;
              }
-				return ActualBlock;
-	     }
-	     else {
-	       ActualBlock = ActualBlock->next;
-	     }
-	  }
-	  else {
-	    ActualBlock = ActualBlock->next;
-	  }
-	}
-	return NULL;
+        return ActualBlock;
+       }
+       else {
+         ActualBlock = ActualBlock->next;
+       }
+    }
+    else {
+      ActualBlock = ActualBlock->next;
+    }
+  }
+  return NULL;
 }
 
 Block* collisionBottom (Personnage* perso, Blocklist* Blocklist) {
   Block* ActualBlock = Blocklist->first;
-	while (ActualBlock != NULL) {
+  while (ActualBlock != NULL) {
     //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
     if (((perso->y_start) - (perso->hauteur)/2 <= (ActualBlock->y) + (ActualBlock->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 > (ActualBlock->y) - (ActualBlock->hauteur)/2)) {
       //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
@@ -250,16 +250,16 @@ void controlCollisionTop (Personnage* perso, Block* block) {
 
 Personnage* collisionPersoRight (Personnage* perso, Personnagelist* personnagelist) {
   Personnage* ActualPerso = personnagelist->first;
-	while (ActualPerso != NULL) {
-		if(ActualPerso == perso){
-			ActualPerso = ActualPerso->next;
-		}
-		else{
+  while (ActualPerso != NULL) {
+    if(ActualPerso == perso){
+      ActualPerso = ActualPerso->next;
+    }
+    else{
       //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
       if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - ((ActualPerso->largeur)/2)) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2)) {
         //Si le point y le plus bas du perso est < au point y le plus haut du block
         if (((perso->y_start) - (perso->hauteur)/2 < (ActualPerso->y_start) + (ActualPerso->hauteur)/2 - 0.25) && ((perso->y_start) + (perso->hauteur)/2 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)){
-					return ActualPerso;
+          return ActualPerso;
         }
         else {
           ActualPerso = ActualPerso->next;
@@ -268,32 +268,32 @@ Personnage* collisionPersoRight (Personnage* perso, Personnagelist* personnageli
       else {
         ActualPerso = ActualPerso->next;
       }
-		}
-	}
+    }
+  }
   return NULL;
 }
 
 Personnage* collisionPersoLeft (Personnage* perso, Personnagelist* personnagelist) {
   Personnage* ActualPerso = personnagelist->first;
-	while (ActualPerso != NULL) {
-		if(ActualPerso == perso){
-			ActualPerso = ActualPerso->next;
-		}
-		else{
-	    //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	    if (((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + ((ActualPerso->largeur)/2)) && ((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2)) {
-	      //Si le point y le plus bas du perso est < au point y le plus haut du block
-	        if (((perso->y_start) - (perso->hauteur)/2 < (ActualPerso->y_start) + (ActualPerso->hauteur)/2 - 0.25) && ((perso->y_start) + (perso->hauteur)/2 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)){
-						return ActualPerso;
-	      	}
-	      	else {
-	        	ActualPerso = ActualPerso->next;
-	      	}
-	    }
-	    else {
-	      ActualPerso = ActualPerso->next;
-	    }
-		}
+  while (ActualPerso != NULL) {
+    if(ActualPerso == perso){
+      ActualPerso = ActualPerso->next;
+    }
+    else{
+      //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+      if (((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + ((ActualPerso->largeur)/2)) && ((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2)) {
+        //Si le point y le plus bas du perso est < au point y le plus haut du block
+          if (((perso->y_start) - (perso->hauteur)/2 < (ActualPerso->y_start) + (ActualPerso->hauteur)/2 - 0.25) && ((perso->y_start) + (perso->hauteur)/2 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)){
+            return ActualPerso;
+          }
+          else {
+            ActualPerso = ActualPerso->next;
+          }
+      }
+      else {
+        ActualPerso = ActualPerso->next;
+      }
+    }
   }
   return NULL;
 }
@@ -301,99 +301,99 @@ Personnage* collisionPersoLeft (Personnage* perso, Personnagelist* personnagelis
 Personnage* collisionPersonnageBottom (Personnage* perso, Personnagelist* personnagelist) {
   Personnage* ActualPerso = personnagelist->first;
 
-	if(perso->next != NULL){
-		while (ActualPerso != NULL) {
-			if(ActualPerso == perso){
-				ActualPerso = ActualPerso->next;
-			}
-	    //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
-	    if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
-	      //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	      if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
-					//perso->y_start = ActualPerso->y_start + (ActualPerso->hauteur/2) + (perso->hauteur/2);
-					if(((perso->y_start - (perso->hauteur)/2) - 0.05 <= (ActualPerso->y_start + (ActualPerso->hauteur)/2 + 0.05)) && (perso->y_start > ActualPerso->y_start)){
-						perso->y_start = ActualPerso->y_start + (ActualPerso->hauteur)/2 + (perso->hauteur/2) + 0.04;
-					}
-					return ActualPerso;
-	      }
-	      else {
-	        ActualPerso = ActualPerso->next;
-	      }
-	    }
-	    else {
-	      ActualPerso = ActualPerso->next;
-	    }
-	  }
-	}
-	else{
-		while (ActualPerso->next != NULL) {
-			if(ActualPerso == perso){
-				ActualPerso = ActualPerso->next;
-			}
-	    //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
-	    if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
-	      //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	      if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
-					if(((perso->y_start - (perso->hauteur)/2) - 0.05 <= (ActualPerso->y_start + (ActualPerso->hauteur)/2 + 0.05)) && (perso->y_start > ActualPerso->y_start)){
-						perso->y_start = ActualPerso->y_start + (ActualPerso->hauteur)/2 + (perso->hauteur/2) + 0.04;
-					}
-					return ActualPerso;
-	      }
-	      else {
-	        ActualPerso = ActualPerso->next;
-	      }
-	    }
-	    else {
-	      ActualPerso = ActualPerso->next;
-	    }
-	  }
-	}
-	return NULL;
+  if(perso->next != NULL){
+    while (ActualPerso != NULL) {
+      if(ActualPerso == perso){
+        ActualPerso = ActualPerso->next;
+      }
+      //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
+      if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
+        //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+        if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
+          //perso->y_start = ActualPerso->y_start + (ActualPerso->hauteur/2) + (perso->hauteur/2);
+          if(((perso->y_start - (perso->hauteur)/2) - 0.05 <= (ActualPerso->y_start + (ActualPerso->hauteur)/2 + 0.05)) && (perso->y_start > ActualPerso->y_start)){
+            perso->y_start = ActualPerso->y_start + (ActualPerso->hauteur)/2 + (perso->hauteur/2) + 0.04;
+          }
+          return ActualPerso;
+        }
+        else {
+          ActualPerso = ActualPerso->next;
+        }
+      }
+      else {
+        ActualPerso = ActualPerso->next;
+      }
+    }
+  }
+  else{
+    while (ActualPerso->next != NULL) {
+      if(ActualPerso == perso){
+        ActualPerso = ActualPerso->next;
+      }
+      //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
+      if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
+        //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+        if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
+          if(((perso->y_start - (perso->hauteur)/2) - 0.05 <= (ActualPerso->y_start + (ActualPerso->hauteur)/2 + 0.05)) && (perso->y_start > ActualPerso->y_start)){
+            perso->y_start = ActualPerso->y_start + (ActualPerso->hauteur)/2 + (perso->hauteur/2) + 0.04;
+          }
+          return ActualPerso;
+        }
+        else {
+          ActualPerso = ActualPerso->next;
+        }
+      }
+      else {
+        ActualPerso = ActualPerso->next;
+      }
+    }
+  }
+  return NULL;
 }
 
 Personnage* controlCollisionPersonnageBottom (Personnage* perso, Personnage* ActualPerso) {
 
-	if(perso->next != NULL){
-		while (ActualPerso != NULL) {
-			if(ActualPerso == perso){
-				ActualPerso = ActualPerso->next;
-			}
-	    //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
-	    if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
-	      //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	      if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
-					return ActualPerso;
-	      }
-	      else {
-	        ActualPerso = ActualPerso->next;
-	      }
-	    }
-	    else {
-	      ActualPerso = ActualPerso->next;
-	    }
-	  }
-	}
-	else{
-		while (ActualPerso->next != NULL) {
-			if(ActualPerso == perso){
-				ActualPerso = ActualPerso->next;
-			}
-	    //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
-	    if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
-	      //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	      if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
-					return ActualPerso;
-	      }
-	      else {
-	        ActualPerso = ActualPerso->next;
-	      }
-	    }
-	    else {
-	      ActualPerso = ActualPerso->next;
-	    }
-	  }
-	}
-	return NULL;
+  if(perso->next != NULL){
+    while (ActualPerso != NULL) {
+      if(ActualPerso == perso){
+        ActualPerso = ActualPerso->next;
+      }
+      //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
+      if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
+        //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+        if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
+          return ActualPerso;
+        }
+        else {
+          ActualPerso = ActualPerso->next;
+        }
+      }
+      else {
+        ActualPerso = ActualPerso->next;
+      }
+    }
+  }
+  else{
+    while (ActualPerso->next != NULL) {
+      if(ActualPerso == perso){
+        ActualPerso = ActualPerso->next;
+      }
+      //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
+      if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
+        //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+        if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
+          return ActualPerso;
+        }
+        else {
+          ActualPerso = ActualPerso->next;
+        }
+      }
+      else {
+        ActualPerso = ActualPerso->next;
+      }
+    }
+  }
+  return NULL;
 }
 
 Personnage* collisionPersonnageTop (Personnage* perso, Personnagelist* personnagelist) {
@@ -403,10 +403,10 @@ Personnage* collisionPersonnageTop (Personnage* perso, Personnagelist* personnag
     if (((perso->y_start) + (perso->hauteur)/2 >= (ActualPerso->y_start) - (ActualPerso->hauteur)/2 - 0.5) && ((perso->y_start - perso->hauteur/2) < (ActualPerso->y_start - ActualPerso->hauteur/2))) {
       //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
       if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 - 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2)) {
-				if((controlCollisionPersonnageBottom(perso, ActualPerso) != NULL) && ((perso->y_start) + (perso->hauteur)/2 + 2 >= (ActualPerso->y_start) - (ActualPerso->hauteur)/2)){
-					perso->y_start = ActualPerso->y_start - (ActualPerso->hauteur)/2 - (perso->hauteur)/2 - 0.15;
-				}
-				return ActualPerso;
+        if((controlCollisionPersonnageBottom(perso, ActualPerso) != NULL) && ((perso->y_start) + (perso->hauteur)/2 + 2 >= (ActualPerso->y_start) - (ActualPerso->hauteur)/2)){
+          perso->y_start = ActualPerso->y_start - (ActualPerso->hauteur)/2 - (perso->hauteur)/2 - 0.15;
+        }
+        return ActualPerso;
       }
       else {
         ActualPerso = ActualPerso->next;
@@ -424,47 +424,47 @@ int collisionPersonnageBottomEvery(Personnage* perso, Personnagelist* personnage
   Personnage* ActualPerso = personnagelist->first;
 
   if(perso->next != NULL){
-		while (ActualPerso != NULL) {
-			if(ActualPerso == perso){
-				ActualPerso = ActualPerso->next;
-			}
-	    //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
-	    if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
-	      //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	      if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
-					//perso->y_start = ActualPerso->y_start + (ActualPerso->hauteur/2) + (perso->hauteur/2);
-					return 1;
-	      }
-	      else {
-	        ActualPerso = ActualPerso->next;
-	      }
-	    }
-	    else {
-	      ActualPerso = ActualPerso->next;
-	    }
-	  }
-	}
-	else{
-		while (ActualPerso->next != NULL) {
-			if(ActualPerso == perso){
-				ActualPerso = ActualPerso->next;
-			}
-	    //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
-	    if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
-	      //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
-	      if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
-					return 1;
-	      }
-	      else {
-	        ActualPerso = ActualPerso->next;
-	      }
-	    }
-	    else {
-	      ActualPerso = ActualPerso->next;
-	    }
-	  }
-	}
-	return 0;
+    while (ActualPerso != NULL) {
+      if(ActualPerso == perso){
+        ActualPerso = ActualPerso->next;
+      }
+      //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
+      if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
+        //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+        if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
+          //perso->y_start = ActualPerso->y_start + (ActualPerso->hauteur/2) + (perso->hauteur/2);
+          return 1;
+        }
+        else {
+          ActualPerso = ActualPerso->next;
+        }
+      }
+      else {
+        ActualPerso = ActualPerso->next;
+      }
+    }
+  }
+  else{
+    while (ActualPerso->next != NULL) {
+      if(ActualPerso == perso){
+        ActualPerso = ActualPerso->next;
+      }
+      //Si le point le plus bas du perso est < ou = au point le plus haut du block et que le pt le plus haut du perso est > ou = au pt le plus bas du block
+      if (((perso->y_start) - (perso->hauteur)/2 <= (ActualPerso->y_start) + (ActualPerso->hauteur)/2) && ((perso->y_start) + (perso->hauteur)/2 - 0.25 > (ActualPerso->y_start) - (ActualPerso->hauteur)/2)) {
+        //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+        if (((perso->x_start) + (perso->largeur)/2 >= (ActualPerso->x_start) - (ActualPerso->largeur)/2 + 0.05) && ((perso->x_start) - (perso->largeur)/2 <= (ActualPerso->x_start) + (ActualPerso->largeur)/2 - 0.05)) {
+          return 1;
+        }
+        else {
+          ActualPerso = ActualPerso->next;
+        }
+      }
+      else {
+        ActualPerso = ActualPerso->next;
+      }
+    }
+  }
+  return 0;
 }
 
 void collisionEveryPerso (Personnage* perso, Blocklist* Blocklist, Personnagelist* personnagelist, int* verifTop) {

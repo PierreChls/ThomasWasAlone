@@ -31,6 +31,6 @@
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_image.h>
 void loadNiveau(int number_level, Personnagelist* personnagelist, Blocklist* blocklist);
-int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume, float* rotateCarre);
+int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume, GLuint texture_gradient, float* rotateCarre);
 
 #endif

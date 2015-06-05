@@ -48,7 +48,7 @@ void loadNiveau(int number_level, Personnagelist* personnagelist, Blocklist* blo
 
 }
 
-int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume, float* rotateCarre) {
+int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Personnage** perso, int windowWidth, int windowHeight, int* booleanPressed, int* booleanChangePersonnage, int* reset, int* jump, int* verif, int* verif2, int* verif3, float* pesanteur, float* acceleration, float* positionparallax, float* movetop, int* verifTop, int* parallax_move, int* son_bottom, int* verifsound3, float* distance_x, float* distance_y, float* camera_center_x, float* camera_center_y, Mix_Chunk* son_win, Mix_Chunk* son_ground, Mix_Chunk* son_jump,  GLuint texture_front, GLuint texture_back, float* positionparallaxfixed, int* cpt_finish_level, int* son_top, GLuint texture_brume,  GLuint texture_gradient, float* rotateCarre) {
   int t;
   moveCameraSuivrePerso(*perso, distance_x, distance_y, camera_center_x, camera_center_y);
   //mouvementCamera(*perso, windowWidth, windowHeight, camera_center_x,camera_center_y);
@@ -85,6 +85,27 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
     glTranslatef(t-130, 15, 1);
     glRotatef(-(*rotateCarre), 0, 0, 1);
     dessinCarre(15);
+  }
+
+  for(t=0; t<1000; t+=70) {
+    glLoadIdentity();
+    glTranslatef(t-120, 25, 1);
+    glRotatef(-(*rotateCarre), 0, 0, 1);
+    dessinCarre(8);
+  }
+
+  for(t=0; t<1000; t+=100) {
+    glLoadIdentity();
+    glTranslatef(t-160, 50, 1);
+    glRotatef(-(*rotateCarre), 0, 0, 1);
+    dessinCarre(20);
+  }
+
+  for(t=0; t<1000; t+=50) {
+    glLoadIdentity();
+    glTranslatef(t-160, 25, 1);
+    glRotatef((*rotateCarre), 0, 0, 1);
+    dessinCarre(13);
   }
 
   /* Affichage */
@@ -178,7 +199,7 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
   deffilement(positionparallax);
 
   if( (*jump)==0 && (*pesanteur)!=0 && collisionBottomWithoutJump(*perso, blocklist)!=NULL ){
-    (*pesanteur) = 0;
+		(*pesanteur) = 0;
     (*jump) = 0;
   }
 
@@ -193,15 +214,15 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
   Block* BlockCollisionBottom;
   BlockCollisionBottom = collisionBottom(*perso, blocklist);
 
-	int verifcollisionTopBlockMove = 0;
+int verifcollisionTopBlockMove = 0;
 
-	if(BlockCollisionTop != NULL){
-		if(BlockCollisionTop->move == 1 || BlockCollisionTop->move ==2){
-			(*perso)->y_start -= 0.8;
-			(*jump) = 1;
-			verifcollisionTopBlockMove = 1;
-		}
-	}
+  if(BlockCollisionTop != NULL){
+    if(BlockCollisionTop->move == 1 || BlockCollisionTop->move ==2){
+      (*perso)->y_start -= 0.8;
+      (*jump) = 1;
+      verifcollisionTopBlockMove = 1;
+    }
+  }
 
   if(BlockCollisionTop != NULL && verifcollisionTopBlockMove == 0){
     controlCollisionTop(*perso, BlockCollisionTop);
@@ -248,23 +269,22 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
     (*perso)->y_start += (*pesanteur);
   }
 
-
-	Block* BlockCollisionRight;
+  /*Gestion de l'accélération gauche et droite + gestion des collisions*/
+  Block* BlockCollisionRight;
   BlockCollisionRight = collisionBlockRight(*perso, blocklist);
 
-  /*Gestion de l'accélération gauche et droite + gestion des collisions*/
   if ( (*booleanPressed) == 1) {
 
     //GESTION DES BLOCKS
-		if( (*acceleration) <= 0.3 && BlockCollisionRight == NULL){
-			(*acceleration) += 0.02;
-		}
-		if(BlockCollisionRight != NULL){
-			if( (*acceleration) == 0 ){
-				(*perso)->x_start = BlockCollisionRight->x - BlockCollisionRight->largeur/2 - (*perso)->largeur/2 - 0.05;
-			}
-			(*acceleration) = 0;
-		}
+    if( (*acceleration) <= 0.3 && BlockCollisionRight == NULL){
+      (*acceleration) += 0.02;
+    }
+    if(BlockCollisionRight != NULL){
+      if( (*acceleration) == 0 ){
+        (*perso)->x_start = BlockCollisionRight->x - BlockCollisionRight->largeur/2 - (*perso)->largeur/2 - 0.05;
+      }
+      (*acceleration) = 0;
+    }
     (*perso)->x_start += (*acceleration);
 
     //GESTION DES PERSONNAGES
@@ -278,22 +298,22 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
     }
   }
 
-	Block* BlockCollisionLeft;
+  Block* BlockCollisionLeft;
   BlockCollisionLeft = collisionBlockLeft(*perso, blocklist);
 
   if ( (*booleanPressed) == 2) {
 
     //GESTION DES BLOCKS
 
-		if( (*acceleration) >= -0.3 && BlockCollisionLeft == NULL){
-			(*acceleration) -= 0.02;
-		}
-		if(BlockCollisionLeft != NULL){
-			if( (*acceleration) == 0 ){
-				(*perso)->x_start = BlockCollisionLeft->x + BlockCollisionLeft->largeur/2 + (*perso)->largeur/2 + 0.1;
-			}
-			(*acceleration) = 0;
-		}
+    if( (*acceleration) >= -0.3 && BlockCollisionLeft == NULL){
+      (*acceleration) -= 0.02;
+    }
+    if(BlockCollisionLeft != NULL){
+      if( (*acceleration) == 0 ){
+        (*perso)->x_start = BlockCollisionLeft->x + BlockCollisionLeft->largeur/2 + (*perso)->largeur/2 + 0.1;
+      }
+      (*acceleration) = 0;
+    }
     (*perso)->x_start += (*acceleration);
 
     //GESTION DES PERSONNAGES

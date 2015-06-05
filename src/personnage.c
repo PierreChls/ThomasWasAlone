@@ -89,7 +89,7 @@ void dessinPersonnageOmbre(Personnagelist* Personnagelist){
 	if (Personnagelist == NULL) {
 		exit(1);
 	}
-	glLoadIdentity();
+	glLoadIdentity(); 
 	Personnage* ActualPerso = Personnagelist->first;
 	while (ActualPerso != NULL) {
 		glBegin(GL_QUADS);
@@ -145,7 +145,6 @@ void dessinPersonnageBarre(Personnagelist* Personnagelist, Personnage* PersoRepe
 	  	ActualPerso = ActualPerso->next;
 	}
 	glMatrixMode(GL_MODELVIEW);
-	//glTranslatef((windowWidth/2 +20), (windowHeight/2+20), 0);
 }
 
 Personnage* changePersonnage (Personnagelist* personnagelist, Personnage* ActualPerso){
