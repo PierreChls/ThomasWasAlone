@@ -27,7 +27,9 @@
 #include "block.h"
 
 Block* collisionRight (Personnage* perso, Blocklist* Blocklist);
+Block* collisionBlockRight (Personnage* perso, Blocklist* Blocklist);
 Block* collisionLeft (Personnage* perso, Blocklist* Blocklist);
+Block* collisionBlockLeft (Personnage* perso, Blocklist* Blocklist);
 Block* collisionBottomWithoutJump (Personnage* perso, Blocklist* Blocklist);
 Block* collisionBottom (Personnage* perso, Blocklist* Blocklist);
 Block* collisionTop (Personnage* perso, Blocklist* Blocklist);

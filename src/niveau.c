@@ -248,22 +248,23 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
     (*perso)->y_start += (*pesanteur);
   }
 
+
+	Block* BlockCollisionRight;
+  BlockCollisionRight = collisionBlockRight(*perso, blocklist);
+
   /*Gestion de l'accélération gauche et droite + gestion des collisions*/
   if ( (*booleanPressed) == 1) {
 
     //GESTION DES BLOCKS
-
-    if ( (*acceleration) <= 0.3 && collisionRight(*perso, blocklist) == NULL) {
-      if(controlVitesseRight(*perso, blocklist) == 0){
-        (*acceleration) += 0.02;
-      }
-    }
-    if(controlVitesseRight(*perso, blocklist) == 1){
-      (*acceleration) = 0.01;
-    }
-    if (collisionRight(*perso, blocklist) != NULL) {
-      (*acceleration) = 0;
-    }
+		if( (*acceleration) <= 0.3 && BlockCollisionRight == NULL){
+			(*acceleration) += 0.02;
+		}
+		if(BlockCollisionRight != NULL){
+			if( (*acceleration) == 0 ){
+				(*perso)->x_start = BlockCollisionRight->x - BlockCollisionRight->largeur/2 - (*perso)->largeur/2 - 0.05;
+			}
+			(*acceleration) = 0;
+		}
     (*perso)->x_start += (*acceleration);
 
     //GESTION DES PERSONNAGES
@@ -277,23 +278,22 @@ int evolution_niveau(Blocklist* blocklist, Personnagelist* personnagelist, Perso
     }
   }
 
+	Block* BlockCollisionLeft;
+  BlockCollisionLeft = collisionBlockLeft(*perso, blocklist);
+
   if ( (*booleanPressed) == 2) {
 
     //GESTION DES BLOCKS
 
-
-    if ( (*acceleration) >= -0.3 && collisionLeft(*perso, blocklist) == NULL) {
-      if(controlVitesseLeft(*perso, blocklist) == 0){
-        (*acceleration) -= 0.02;
-      }
-    }
-
-    if(controlVitesseLeft(*perso, blocklist) == 1){
-      (*acceleration) = -0.01;
-    }
-    if (collisionLeft(*perso, blocklist) != NULL) {
-      (*acceleration) = 0;
-    }
+		if( (*acceleration) >= -0.3 && BlockCollisionLeft == NULL){
+			(*acceleration) -= 0.02;
+		}
+		if(BlockCollisionLeft != NULL){
+			if( (*acceleration) == 0 ){
+				(*perso)->x_start = BlockCollisionLeft->x + BlockCollisionLeft->largeur/2 + (*perso)->largeur/2 + 0.1;
+			}
+			(*acceleration) = 0;
+		}
     (*perso)->x_start += (*acceleration);
 
     //GESTION DES PERSONNAGES

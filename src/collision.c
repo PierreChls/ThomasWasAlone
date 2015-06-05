@@ -20,6 +20,26 @@ Block* collisionRight (Personnage* perso, Blocklist* Blocklist) {
   return NULL;
 }
 
+Block* collisionBlockRight (Personnage* perso, Blocklist* Blocklist) {
+  Block* ActualBlock = Blocklist->first;
+	while (ActualBlock != NULL) {
+    //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+    if (((perso->x_start) + (perso->largeur)/2 + 0.25 >= (ActualBlock->x) - ((ActualBlock->largeur)/2)) && ((perso->x_start) - (perso->largeur)/2 <= (ActualBlock->x) + (ActualBlock->largeur)/2)) {
+      //Si le point y le plus bas du perso est < au point y le plus haut du block
+      if (((perso->y_start) - (perso->hauteur)/2 < (ActualBlock->y) + (ActualBlock->hauteur)/2 - 0.25) && ((perso->y_start) + (perso->hauteur)/2 > (ActualBlock->y) - (ActualBlock->hauteur)/2)){
+				return ActualBlock;
+      }
+      else {
+        ActualBlock = ActualBlock->next;
+      }
+    }
+    else {
+      ActualBlock = ActualBlock->next;
+    }
+	}
+  return NULL;
+}
+
 Block* collisionLeft (Personnage* perso, Blocklist* Blocklist) {
   Block* ActualBlock = Blocklist->first;
 	while (ActualBlock != NULL) {
@@ -37,6 +57,26 @@ Block* collisionLeft (Personnage* perso, Blocklist* Blocklist) {
       ActualBlock = ActualBlock->next;
     }
   }
+  return NULL;
+}
+
+Block* collisionBlockLeft (Personnage* perso, Blocklist* Blocklist) {
+  Block* ActualBlock = Blocklist->first;
+	while (ActualBlock != NULL) {
+	  //Si la largeur (axe x) du personnage est touche ou est compris dans la largeur du block
+	  if (((perso->x_start) - (perso->largeur)/2 - 0.5 <= (ActualBlock->x) + ((ActualBlock->largeur)/2)) && ((perso->x_start) + (perso->largeur)/2 >= (ActualBlock->x) - (ActualBlock->largeur)/2)) {
+	    //Si le point y le plus bas du perso est < au point y le plus haut du block
+	      if (((perso->y_start) - (perso->hauteur)/2 < (ActualBlock->y) + (ActualBlock->hauteur)/2 - 0.25) && ((perso->y_start) + (perso->hauteur)/2 > (ActualBlock->y) - (ActualBlock->hauteur)/2)){
+					return ActualBlock;
+	    	}
+	    	else {
+          ActualBlock = ActualBlock->next;
+	    	}
+	  }
+	  else {
+      ActualBlock = ActualBlock->next;
+	  }
+	}
   return NULL;
 }
 
