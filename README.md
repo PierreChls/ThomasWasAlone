@@ -1,7 +1,7 @@
 
 # Thomas Was Alone ⬛️ ▪️
 
-[![Version](https://img.shields.io/badge/version-1.0-green.svg)](https://img.shields.io/badge/version-1.1-green.svg) [![Build status](https://img.shields.io/badge/build-passing-green.svg)](https://img.shields.io/badge/build-passing-green.svg) [![Graphic Library](https://img.shields.io/badge/Graphic%20Library-OpenGL-lightgrey.svg)](https://img.shields.io/badge/Graphic%20Library-OpenGL-lightgrey.svg)
+[![Version](https://img.shields.io/badge/version-1.0-green.svg)](https://img.shields.io/badge/version-1.1-green.svg) [![Build status](https://img.shields.io/badge/build-passing-green.svg)](https://img.shields.io/badge/build-passing-green.svg) [![Graphic Library](https://img.shields.io/badge/Graphic%20Library-OpenGL-lightgrey.svg)](https://img.shields.io/badge/Graphic%20Library-OpenGL-lightgrey.svg) [![Platform](https://img.shields.io/badge/platform-OS%20X%20%7C%20Windows%20%7C%20Linux-lightgrey.svg)](https://img.shields.io/badge/platform-OS%20X%20%7C%20Windows-lightgrey.svg)
 
 Project realised in IMAC Engineering School, in May and June 2015. 2D game released in OpenGL and SDL.
 
