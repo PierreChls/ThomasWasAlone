@@ -1,5 +1,5 @@
 
-# Thomas Was Alone ▪️⬛️
+# Thomas Was Alone ⬛️ ▪️
 
 [![Version](https://img.shields.io/badge/version-1.0-green.svg)](https://img.shields.io/badge/version-1.1-green.svg) [![Build status](https://img.shields.io/badge/build-passing-green.svg)](https://img.shields.io/badge/build-passing-green.svg) [![Graphic Library](https://img.shields.io/badge/Graphic%20Library-OpenGL-lightgrey.svg)](https://img.shields.io/badge/Graphic%20Library-OpenGL-lightgrey.svg)
 
